@@ -5,4 +5,3 @@ RUN apt-get update && \
     apt-get install -qy curl && \
     apt-get install -qy curl && \
     curl -sSL https://get.docker.com/ | sh
-RUN docker run -d --name likith likithbabu/jai
