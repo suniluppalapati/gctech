@@ -1,0 +1,26 @@
+pipeline
+{
+    agent any
+    stages {
+        stage (git) {
+            steps {
+                git branch: 'main', url:'https://github.com/suniluppalapati/gctech.git'
+            }
+        }
+        stage (maven) {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage (docker) {
+            steps {
+                sh 'docker login -u rajusunil -p Sunilram@123'
+               sh ' docker build -t rajusunil/project .'
+                sh ' docker push rajusunil/project'
+                sh ' docker cp target/*.war sunil:/usr/local/tomcat/webapps/ROOT.war'
+                
+            }
+        }    
+
+    }
+}
